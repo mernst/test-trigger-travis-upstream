@@ -1,0 +1,16 @@
+language: java
+
+script: true
+
+# Comment or uncomment this to run a matrix build
+# jdk:
+#   - oraclejdk8
+#   - oraclejdk7
+
+after_success:
+  - |
+      if [[ ($TRAVIS_PULL_REQUEST == false) &&
+            ( (! $TRAVIS_JOB_NUMBER == *.*) || ($TRAVIS_JOB_NUMBER == *.1) ) ]] ; then
+        curl -LO https://raw.github.com/mernst/plume-lib/master/bin/trigger-travis.sh
+        sh trigger-travis.sh mernst test-trigger-travis-downstream $TRAVIS_ACCESS_TOKEN
+      fi
