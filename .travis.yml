@@ -3,9 +3,9 @@ language: java
 script: true
 
 # Comment or uncomment this to run a matrix build
-# jdk:
-#   - oraclejdk8
-#   - oraclejdk7
+jdk:
+  - oraclejdk8
+  - oraclejdk7
 
 after_success:
   - |
